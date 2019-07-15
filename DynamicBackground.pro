@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dynamicbackgroundbase.cpp
+    dynamicbackgroundinterface.cpp \
+    dynamicbackgroundpure.cpp
 
 HEADERS += \
         mainwindow.h \
-    dynamicbackgroundbase.h
+    dynamicbackgroundinterface.h \
+    dynamicbackgroundpure.h
 
 FORMS += \
         mainwindow.ui

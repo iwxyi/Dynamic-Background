@@ -1,14 +1,17 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
+    this->setFixedSize(600, 400);
+
+    dm_bg = new DynamicBackgroundPure(this);
 }
 
-MainWindow::~MainWindow()
+
+void MainWindow::paintEvent(QPaintEvent *event)
 {
-    delete ui;
+    QPainter painter(this);
+
+    dm_bg->draw(painter);
 }

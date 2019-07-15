@@ -2,10 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <dynamicbackgroundpure.h>
 
-namespace Ui {
-class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
@@ -13,10 +11,12 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+
+protected:
+    void paintEvent(QPaintEvent* event);
 
 private:
-    Ui::MainWindow *ui;
+    DynamicBackgroundInterface *dm_bg;
 };
 
 #endif // MAINWINDOW_H

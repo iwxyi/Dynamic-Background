@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QColor>
 #include <QTimer>
+#include <QTime>
 #include <QPainter>
 
 #define REFRESH_INTERVAL 30000
@@ -24,6 +25,10 @@ public:
 
 protected:
     virtual void timeout();
+
+
+    int rand(int min, int max);
+    bool randBool();
 
 signals:
     void signalRedraw();

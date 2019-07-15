@@ -16,7 +16,12 @@ protected:
     virtual QRect getGeometry();
 
 private:
-    QColor bg_color1, bg_color2;
+    int r1, g1, b1;
+    int r2, g2, b2;
+    int r, g, b;
+    bool add_r, add_g, add_b;
+
+    QColor draw_color;
 };
 
 #endif // DYNAMICBACKGROUNDPURE_H

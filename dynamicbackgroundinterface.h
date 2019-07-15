@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QPainter>
+#include <QDebug>
 
 #define REFRESH_INTERVAL 30000
 
@@ -14,18 +15,18 @@ class DynamicBackgroundInterface : public QObject
 {
     Q_OBJECT
 public:
-    explicit DynamicBackgroundInterface(QWidget *parent);
+    DynamicBackgroundInterface(QWidget *parent);
 
     virtual void setInterval(int iv);
-    virtual void setColor(QColor color1) {}
-    virtual void setColor(QColor color1, QColor color2) {}
-    virtual void setColor(QColor color1, QColor color2, QColor color3) {}
-    virtual void setColor(QColor color1, QColor color2, QColor color3, QColor color4) {}
-    virtual void draw(QPainter& painter) {}
+    virtual void setColor(QColor) {}
+    virtual void setColor(QColor, QColor) {}
+    virtual void setColor(QColor, QColor, QColor) {}
+    virtual void setColor(QColor, QColor, QColor, QColor) {}
+    virtual void draw(QPainter&) { qDebug() << "interface draw"; }
 
 protected:
     virtual void timeout();
-
+    virtual QRect getGeometry();
 
     int rand(int min, int max);
     bool randBool();

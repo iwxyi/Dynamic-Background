@@ -24,9 +24,14 @@ void DynamicBackgroundInterface::timeout()
     redraw();
 }
 
+QRect DynamicBackgroundInterface::getGeometry()
+{
+    return QRect(-1, -1, widget->size().width()+1, widget->size().height()+1);
+}
+
 int DynamicBackgroundInterface::rand(int min, int max)
 {
-    return qrand() % (min+1) + (max-min);
+    return qrand() % (max-min+1) + min;
 }
 
 bool DynamicBackgroundInterface::randBool()

@@ -6,14 +6,13 @@
 class DynamicBackgroundPure : public DynamicBackgroundInterface
 {
 public:
-    DynamicBackgroundPure(QWidget *parent, QColor color1=QColor(), QColor color2=QColor());
+    DynamicBackgroundPure(QWidget *parent, QColor color1=QColor(253, 245, 230), QColor color2=QColor(255, 250, 240));
 
     void setColor(QColor color1, QColor color2);
-    void redraw(QPainter& painter);
+    void draw(QPainter& painter);
 
 protected:
     void timeout();
-    virtual QRect getGeometry();
 
 private:
     int r1, g1, b1;

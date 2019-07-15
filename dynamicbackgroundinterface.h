@@ -25,16 +25,17 @@ public:
     virtual void draw(QPainter&) { qDebug() << "interface draw"; }
 
 protected:
-    virtual void timeout();
     virtual QRect getGeometry();
 
     int rand(int min, int max);
     bool randBool();
+    int delta3(int v);
 
 signals:
     void signalRedraw();
 
 public slots:
+    virtual void timeout();
     virtual void redraw();
 
 protected:

@@ -18,7 +18,8 @@ private:
     int r1, g1, b1;
     int r2, g2, b2;
     int r, g, b;
-    bool add_r, add_g, add_b;
+    int dr, dg, db;
+    bool ar, ag, ab; // 从1变到2的方向
 
     QColor draw_color;
 };

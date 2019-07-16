@@ -25,11 +25,17 @@ public:
     DynamicBackgroundInterface(QWidget *parent);
 
     virtual void setInterval(int iv);
+    virtual void setHorizone(bool) {}
+    virtual void setAngle(double) {}
+
     virtual void setColor(QColor) {}
     virtual void setColor(QColor, QColor) {}
     virtual void setColor(QColor, QColor, QColor) {}
     virtual void setColor(QColor, QColor, QColor, QColor) {}
-    virtual void draw(QPainter&) { qDebug() << "interface draw"; }
+    virtual void setColor2(QColor) {}
+    virtual void setColor2(QColor, QColor) {}
+    virtual void draw(QPainter&) {}
+
 
 protected:
     virtual QRect getGeometry();

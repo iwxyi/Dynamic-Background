@@ -2,7 +2,7 @@
 
 DynamicBackgroundGradient::DynamicBackgroundGradient(QWidget* parent,
         QColor color1, QColor color2, QColor color3,  QColor color4)
-    : DynamicBackgroundInterface (parent)
+    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false)
 {
 	setColor(color1, color2, color3, color4);
 }
@@ -36,23 +36,51 @@ void DynamicBackgroundGradient::setColor(QColor color1, QColor color2, QColor co
     draw_coloru = QColor(cu[R], cu[G], cu[B], cu[A]);
     draw_colord = QColor(cd[R], cd[G], cd[B], cd[A]);
 }
+
 void DynamicBackgroundGradient::draw(QPainter &painter)
 {
     painter.save();
     {
         painter.setRenderHint(QPainter::Antialiasing, true);
 
-        // 绘制矩形
+        // 获取位置
         QRect rect = getGeometry();
-        QLinearGradient linear(QPoint(rect.width()/2, rect.top()), QPoint(QPoint(rect.width()/2, rect.bottom())));
+        QPoint pu, pd, pm;
+        if (!horizone)
+        {
+            pu = QPoint(rect.left()+rect.width()/2, rect.top());
+            pd = QPoint(QPoint(rect.left()+rect.width()/2, rect.bottom()));
+        }
+        else
+        {
+            pu = QPoint(rect.left(), rect.top()+rect.height()/2);
+            pd = QPoint(rect.right(), rect.top()+rect.height()/2);
+        }
+
+        // 开启渐变
+        QLinearGradient linear(pu, pd);
         linear.setColorAt(0, draw_coloru);
         linear.setColorAt(1, draw_colord);
+        if (use_mid)
+            linear.setColorAt(prop, draw_colorm);
         linear.setSpread(QGradient::PadSpread);
 
         painter.setBrush(linear);
         painter.drawRect(rect);
     }
     painter.restore();
+}
+
+void DynamicBackgroundGradient::setHorizone(bool h)
+{
+    horizone = true;
+    redraw();
+}
+
+void DynamicBackgroundGradient::setAngle(double angle)
+{
+    this->angle = angle;
+    redraw();
 }
 
 void DynamicBackgroundGradient::timeout()

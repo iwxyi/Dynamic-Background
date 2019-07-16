@@ -9,7 +9,12 @@
 #include <QPainter>
 #include <QDebug>
 
-#define REFRESH_INTERVAL 30000
+#define REFRESH_INTERVAL 2000
+#define R 1
+#define G 2
+#define B 3
+#define A 4
+
 
 class DynamicBackgroundInterface : public QObject
 {
@@ -27,9 +32,10 @@ public:
 protected:
     virtual QRect getGeometry();
 
-    int rand(int min, int max);
+    int randRange(int min, int max);
     bool randBool();
-    int delta3(int v);
+    int intToUnity(int v);
+    void colorToArray(int* arr, QColor c);
 
 signals:
     void signalRedraw();

@@ -28,7 +28,7 @@ QRect DynamicBackgroundInterface::getGeometry()
     return QRect(-1, -1, widget->size().width()+1, widget->size().height()+1);
 }
 
-int DynamicBackgroundInterface::rand(int min, int max)
+int DynamicBackgroundInterface::randRange(int min, int max)
 {
     if (min > max)
     {
@@ -46,13 +46,21 @@ bool DynamicBackgroundInterface::randBool()
     return qrand() % 2;
 }
 
-int DynamicBackgroundInterface::delta3(int v)
+int DynamicBackgroundInterface::intToUnity(int v)
 {
     if (v == 0)
         return 0;
     if (v > 0)
         return 1;
     return -1;
+}
+
+void DynamicBackgroundInterface::colorToArray(int *arr, QColor c)
+{
+    arr[R] = c.red();
+    arr[G] = c.green();
+    arr[B] = c.blue();
+    arr[A] = c.alpha();
 }
 
 void DynamicBackgroundInterface::redraw()

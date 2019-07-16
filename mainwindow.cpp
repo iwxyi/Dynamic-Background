@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dm_bg = new DynamicBackgroundPure(this);
     dm_bg->setColor(QColor(255, 0, 0), QColor(0, 255, 0));
-    dm_bg->setInterval(2000);
+    dm_bg->setInterval(20);
     connect(dm_bg, SIGNAL(signalRedraw()), this, SLOT(update()));
 }
 

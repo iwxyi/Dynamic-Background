@@ -9,37 +9,20 @@ DynamicBackgroundPure::DynamicBackgroundPure(QWidget* parent, QColor color1, QCo
 void DynamicBackgroundPure::setColor(QColor color1, QColor color2)
 {
     // 阈值
-    r1 = color1.red();
-    g1 = color1.green();
-    b1 = color1.blue();
-    r2 = color2.red();
-    g2 = color2.green();
-    b2 = color2.blue();
+    colorToArray(c1, color1);
+    colorToArray(c2, color2);
 
-    // 随机变化
-    ar = randBool();
-    ag = randBool();
-    ab = randBool();
+    // 设置各种属性
+    for (int i = 1; i <= 4; i++)
+    {
+        a[i] = randBool(); // 随机变化方向
+        c[i] = randRange(c1[i], c2[i]); // 初始随机颜色
+        d[i] = intToUnity(c2[i]-c1[i]); // 每次变化的方向,false向1变化，true向2变化
+        if (c[i] == c1[i]) a[i] = true;
+        if (c[i] == c2[i]) a[i] = false;
+    }
 
-    // 随机值
-    r = rand(r1, r2);
-    g = rand(g1, g2);
-    b = rand(b1, b2);
-
-    // 每次变化的值
-    dr = delta3(r2-r1);
-    dg = delta3(g2-g1);
-    db = delta3(b2-b1);
-
-    // 边界处理
-    if (r == r1) ar = true;
-    if (r == r2) ar = false;
-    if (g == g1) ag = true;
-    if (g == g2) ag = false;
-    if (b == b1) ab = true;
-    if (b == b2) ab = false;
-
-    draw_color = QColor(r, g, b);
+    draw_color = QColor(c[R], c[G], c[B], c[A]);
 }
 
 void DynamicBackgroundPure::draw(QPainter &painter)
@@ -56,27 +39,12 @@ void DynamicBackgroundPure::draw(QPainter &painter)
 void DynamicBackgroundPure::timeout()
 {
     // 随机变化
-    int type = qrand() % 3;
-    if (type == 0) // R
-    {
-        r += ar ? dr : -dr;
-        if (r == r1) ar = true;
-        if (r == r2) ar = false;
-    }
-    else if (type == 1) // G
-    {
-        g += ag ? dg : -dg;
-        if (g == g1) ag = true;
-        if (g == g2) ag = false;
-    }
-    else // B
-    {
-        b += ab ? db : -db;
-        if (b == b1) ab = true;
-        if (b == b2) ab = false;
-    }
+    int t = randRange(1, 4);
+    c[t] += a[t] ? d[t] : -d[t];
+    if (c[t] == c1[t]) a[t] = true;
+    if (c[t] == c2[t]) a[t] = false;
 
-    draw_color = QColor(r, g, b);
+    draw_color = QColor(c[R], c[G], c[B], c[A]);
 
     DynamicBackgroundInterface::timeout();
 }

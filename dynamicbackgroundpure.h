@@ -15,11 +15,9 @@ protected:
     void timeout();
 
 private:
-    int r1, g1, b1;
-    int r2, g2, b2;
-    int r, g, b;
-    int dr, dg, db;
-    bool ar, ag, ab; // 从1变到2的方向
+    int c1[5], c2[5], c[5];
+    int d[5];
+    bool a[5];
 
     QColor draw_color;
 };

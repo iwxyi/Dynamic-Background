@@ -29,8 +29,8 @@ void DynamicBackgroundGradient::setColor(QColor color1, QColor color2, QColor co
         ad[i] = randBool(); // 随机变化方向
         cd[i] = randRange(c3[i], c4[i]); // 初始随机颜色
         dd[i] = intToUnity(c4[i]-c3[i]); // 每次变化的方向,false向1变化，true向2变化
-        if (cd[i] == c1[i]) ad[i] = true;
-        if (cd[i] == c2[i]) ad[i] = false;
+        if (cd[i] == c3[i]) ad[i] = true;
+        if (cd[i] == c4[i]) ad[i] = false;
     }
 
     draw_coloru = QColor(cu[R], cu[G], cu[B], cu[A]);
@@ -44,7 +44,7 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
 
         // 绘制矩形
         QRect rect = getGeometry();
-        QLinearGradient linear(QPoint(rect.top(), rect.width()/2), QPoint(QPoint(rect.bottom(), rect.width()/2)));
+        QLinearGradient linear(QPoint(rect.width()/2, rect.top()), QPoint(QPoint(rect.width()/2, rect.bottom())));
         linear.setColorAt(0, draw_coloru);
         linear.setColorAt(1, draw_colord);
         linear.setSpread(QGradient::PadSpread);

@@ -15,6 +15,8 @@
 #define B 3
 #define A 4
 
+typedef int ColorArray[5];
+typedef bool ColorDirects[5];
 
 class DynamicBackgroundInterface : public QObject
 {

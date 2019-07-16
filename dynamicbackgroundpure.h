@@ -15,9 +15,9 @@ protected:
     void timeout();
 
 private:
-    int c1[5], c2[5], c[5];
-    int d[5];
-    bool a[5];
+    ColorArray c1, c2, c;
+    ColorArray d;
+    ColorDirects a;
 
     QColor draw_color;
 };

@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <dynamicbackgroundpure.h>
+#include "dynamicbackgroundpure.h"
+#include "dynamicbackgroundgradient.h"
 
 
 class MainWindow : public QMainWindow

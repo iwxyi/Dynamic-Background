@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     dynamicbackgroundinterface.cpp \
-    dynamicbackgroundpure.cpp
+    dynamicbackgroundpure.cpp \
+    dynamicbackgroundgradient.cpp
 
 HEADERS += \
         mainwindow.h \
     dynamicbackgroundinterface.h \
-    dynamicbackgroundpure.h
+    dynamicbackgroundpure.h \
+    dynamicbackgroundgradient.h
 
 FORMS +=
 

@@ -2,7 +2,7 @@
 
 DynamicBackgroundGradient::DynamicBackgroundGradient(QWidget* parent,
         QColor color1, QColor color2, QColor color3,  QColor color4)
-    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false)
+    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false), prop(0.5)
 {
 	setColor(color1, color2, color3, color4);
 }
@@ -35,6 +35,27 @@ void DynamicBackgroundGradient::setColor(QColor color1, QColor color2, QColor co
 
     draw_coloru = QColor(cu[R], cu[G], cu[B], cu[A]);
     draw_colord = QColor(cd[R], cd[G], cd[B], cd[A]);
+}
+
+void DynamicBackgroundGradient::setColor2(QColor color1, QColor color2)
+{
+    // 阈值
+    colorToArray(c5, color1);
+    colorToArray(c6, color2);
+
+    // 设置各种属性
+    for (int i = 1; i <= 4; i++)
+    {
+        am[i] = randBool(); // 随机变化方向
+        cm[i] = randRange(c5[i], c6[i]); // 初始随机颜色
+        dm[i] = intToUnity(c6[i]-c5[i]); // 每次变化的方向,false向1变化，true向2变化
+        if (cm[i] == c5[i]) am[i] = true;
+        if (cm[i] == c6[i]) am[i] = false;
+    }
+
+    draw_colorm = QColor(cm[R], cm[G], cm[B], cm[A]);
+
+    use_mid = true; // 三种颜色默认开启
 }
 
 void DynamicBackgroundGradient::draw(QPainter &painter)

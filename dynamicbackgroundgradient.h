@@ -15,6 +15,7 @@ public:
         );
 
     void setColor(QColor color1, QColor color2, QColor color3, QColor color4);
+    void setColor2(QColor color1, QColor color2);
     void draw(QPainter& painter);
     void setHorizone(bool h);
     void setAngle(double angle = 0);

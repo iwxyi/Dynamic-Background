@@ -26,6 +26,7 @@ qen/
 Thumbs.db
 *.o
 *.so
+*.dmp
 .navigation/
 proguard/
 .vs/

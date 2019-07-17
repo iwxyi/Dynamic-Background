@@ -100,7 +100,7 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
                                     (draw_coloru.blue() + draw_colord.blue())/2,
                                     (draw_coloru.alpha() + draw_colord.alpha())/2
                                 ));
-            qDebug() << "accu:" << m_prop;
+            qDebug() << "m_prop:" << m_prop;
         }
 
         linear.setSpread(QGradient::PadSpread);
@@ -126,10 +126,12 @@ void DynamicBackgroundGradient::setAngle(double angle)
 void DynamicBackgroundGradient::accumulate(int x)
 {
     accumulation += x;
-    if (accumulation < -20)
-        accumulation = 20;
-    else if (accumulation > 20)
-        accumulation = 20;
+    if (accumulation < -accumulation_max)
+        accumulation = -accumulation_max;
+    else if (accumulation > accumulation_max)
+        accumulation = accumulation_max;
+
+    qDebug() << "accu";
 }
 
 void DynamicBackgroundGradient::timeout()

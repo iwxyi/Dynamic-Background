@@ -15,12 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
 //    dm_bg->setColor2(Qt::red, Qt::red);
     dm_bg->showAni();
     connect(dm_bg, SIGNAL(signalRedraw()), this, SLOT(update()));
-
-    QTimer* timer = new QTimer(this);
-    timer->setInterval(100);
-    connect(timer, &QTimer::timeout, [=]{
-        dm_bg->accumulate();
-    });
 }
 
 

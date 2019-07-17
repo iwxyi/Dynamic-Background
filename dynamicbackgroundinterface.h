@@ -62,6 +62,7 @@ protected:
 
     int show_ani_progress; // 出现动画进度
     int accumulation;      // 某一项累计的数值
+    int accumulation_max;  // 累计最大值
 };
 
 #endif // DYNAMICBACKGROUNDINTERFACE_H

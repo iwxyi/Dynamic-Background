@@ -1,6 +1,7 @@
 #include "dynamicbackgroundinterface.h"
 
-DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObject(parent), widget(parent), show_ani_progress(0)
+DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObject(parent), widget(parent),
+    show_ani_progress(0), accumulation(0), accumulation_max(20)
 {
     timer = new QTimer(this);
     timer->setInterval(interval = REFRESH_INTERVAL); // 刷新周期

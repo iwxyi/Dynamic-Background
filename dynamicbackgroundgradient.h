@@ -19,6 +19,7 @@ public:
     void draw(QPainter& painter);
     void setHorizone(bool h);
     void setAngle(double angle = 0);
+    void accumulate(int x = 1);
 
 protected:
 	void timeout();

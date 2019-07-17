@@ -37,6 +37,7 @@ public:
     virtual void draw(QPainter&) {}
 
     void showAni();
+    virtual void accumulate(int x = 1);
 
 
 protected:
@@ -59,7 +60,8 @@ protected:
     int interval;
     QWidget* widget;
 
-    int show_ani_progress;
+    int show_ani_progress; // 出现动画进度
+    int accumulation;      // 某一项累计的数值
 };
 
 #endif // DYNAMICBACKGROUNDINTERFACE_H

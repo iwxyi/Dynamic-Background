@@ -2,7 +2,7 @@
 
 DynamicBackgroundGradient::DynamicBackgroundGradient(QWidget* parent,
         QColor color1, QColor color2, QColor color3,  QColor color4)
-    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false), prop(0.5)
+    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false), prop(-1)
 {
 	setColor(color1, color2, color3, color4);
 }
@@ -56,6 +56,7 @@ void DynamicBackgroundGradient::setColor2(QColor color1, QColor color2)
     draw_colorm = QColor(cm[R], cm[G], cm[B], cm[A]);
 
     use_mid = true; // 三种颜色默认开启
+    prop = 0.5;
 }
 
 void DynamicBackgroundGradient::draw(QPainter &painter)
@@ -82,8 +83,26 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
         QLinearGradient linear(pu, pd);
         linear.setColorAt(0, draw_coloru);
         linear.setColorAt(show_ani_progress?show_ani_progress/100.0:1, draw_colord);
+
+        double m_prop = prop + accumulation / 100.0;
+
         if (use_mid)
-            linear.setColorAt(show_ani_progress?prop*show_ani_progress/100.0:prop, draw_colorm);
+        {
+            m_prop = show_ani_progress?prop*show_ani_progress/100.0:prop;
+            linear.setColorAt(m_prop, draw_colorm);
+        }
+        else if (accumulation)
+        {
+            m_prop = 0.5 + accumulation / 100.0;
+            linear.setColorAt(m_prop, QColor(
+                                    (draw_coloru.red() + draw_colord.red())/2,
+                                    (draw_coloru.green() + draw_colord.green())/2,
+                                    (draw_coloru.blue() + draw_colord.blue())/2,
+                                    (draw_coloru.alpha() + draw_colord.alpha())/2
+                                ));
+            qDebug() << "accu:" << m_prop;
+        }
+
         linear.setSpread(QGradient::PadSpread);
 
         painter.setBrush(linear);
@@ -102,6 +121,15 @@ void DynamicBackgroundGradient::setAngle(double angle)
 {
     this->angle = angle;
     redraw();
+}
+
+void DynamicBackgroundGradient::accumulate(int x)
+{
+    accumulation += x;
+    if (accumulation < -20)
+        accumulation = 20;
+    else if (accumulation > 20)
+        accumulation = 20;
 }
 
 void DynamicBackgroundGradient::timeout()

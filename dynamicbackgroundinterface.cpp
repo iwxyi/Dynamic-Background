@@ -36,6 +36,11 @@ void DynamicBackgroundInterface::showAni()
     });
 }
 
+void DynamicBackgroundInterface::accumulate(int x)
+{
+    accumulation += x;
+}
+
 void DynamicBackgroundInterface::timeout()
 {
     redraw();

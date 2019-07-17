@@ -18,7 +18,6 @@ public:
     void setColor2(QColor color1, QColor color2);
     void draw(QPainter& painter);
     void setHorizone(bool h);
-    void setAngle(double angle = 0);
     void accumulate(int x = 1);
 
 protected:
@@ -32,7 +31,6 @@ private:
 
     // 方向
     bool horizone;
-    int angle;
 
     // 中间颜色
     bool use_mid;

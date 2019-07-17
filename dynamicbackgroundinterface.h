@@ -9,6 +9,8 @@
 #include <QPainter>
 #include <QDebug>
 
+#define PI 3.1415926
+
 #define REFRESH_INTERVAL 2000
 #define R 1
 #define G 2
@@ -24,9 +26,9 @@ class DynamicBackgroundInterface : public QObject
 public:
     DynamicBackgroundInterface(QWidget *parent);
 
-    virtual void setInterval(int iv);
+    virtual void setInterval(int iv = 1000);
     virtual void setHorizone(bool) {}
-    virtual void setAngle(double) {}
+    virtual void setAngle(double a = 0);
 
     virtual void setColor(QColor) {}
     virtual void setColor(QColor, QColor) {}
@@ -59,6 +61,8 @@ protected:
     QTimer* timer;
     int interval;
     QWidget* widget;
+
+    double angle; // PI 的角度
 
     int show_ani_progress; // 出现动画进度
     int accumulation;      // 某一项累计的数值

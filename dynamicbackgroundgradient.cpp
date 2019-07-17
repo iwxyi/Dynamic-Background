@@ -2,7 +2,7 @@
 
 DynamicBackgroundGradient::DynamicBackgroundGradient(QWidget* parent,
         QColor color1, QColor color2, QColor color3,  QColor color4)
-    : DynamicBackgroundInterface (parent), horizone(false), angle(0), use_mid(false), prop(-1)
+    : DynamicBackgroundInterface (parent), horizone(false), use_mid(false), prop(-1)
 {
 	setColor(color1, color2, color3, color4);
 }
@@ -114,12 +114,6 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
 void DynamicBackgroundGradient::setHorizone(bool h)
 {
     horizone = true;
-    redraw();
-}
-
-void DynamicBackgroundGradient::setAngle(double angle)
-{
-    this->angle = angle;
     redraw();
 }
 

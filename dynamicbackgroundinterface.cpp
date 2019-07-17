@@ -19,6 +19,11 @@ void DynamicBackgroundInterface::setInterval(int iv)
     timer->setInterval(interval = iv);
 }
 
+void DynamicBackgroundInterface::setAngle(double a)
+{
+    angle = PI * a / 180;
+}
+
 void DynamicBackgroundInterface::showAni()
 {
     QTimer* ani = new QTimer(this);

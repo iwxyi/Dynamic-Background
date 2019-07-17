@@ -81,9 +81,9 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
         // 开启渐变
         QLinearGradient linear(pu, pd);
         linear.setColorAt(0, draw_coloru);
-        linear.setColorAt(1, draw_colord);
+        linear.setColorAt(show_ani_progress?show_ani_progress/100.0:1, draw_colord);
         if (use_mid)
-            linear.setColorAt(prop, draw_colorm);
+            linear.setColorAt(show_ani_progress?prop*show_ani_progress/100.0:prop, draw_colorm);
         linear.setSpread(QGradient::PadSpread);
 
         painter.setBrush(linear);

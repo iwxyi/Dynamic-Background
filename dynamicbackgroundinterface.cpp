@@ -1,6 +1,6 @@
 #include "dynamicbackgroundinterface.h"
 
-DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObject(parent), widget(parent)
+DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObject(parent), widget(parent), show_ani_progress(0)
 {
     timer = new QTimer(this);
     timer->setInterval(interval = REFRESH_INTERVAL); // 刷新周期
@@ -16,6 +16,24 @@ DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObjec
 void DynamicBackgroundInterface::setInterval(int iv)
 {
     timer->setInterval(interval = iv);
+}
+
+void DynamicBackgroundInterface::showAni()
+{
+    QTimer* ani = new QTimer(this);
+    ani->setInterval(10);
+    ani->start();
+    show_ani_progress = 1;
+    connect(ani, &QTimer::timeout, [=]{
+        show_ani_progress++;
+        if (show_ani_progress > 100)
+        {
+            show_ani_progress = 0;
+            ani->stop();
+            ani->deleteLater();
+        }
+        redraw();
+    });
 }
 
 void DynamicBackgroundInterface::timeout()

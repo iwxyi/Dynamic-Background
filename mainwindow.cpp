@@ -11,7 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
 //    dm_bg->setColor(QColor(255, 0, 0), QColor(128, 0, 0), QColor(0, 255, 0), QColor(0, 128, 0));
 
     dm_bg->setInterval(20);
-//    dm_bg->setHorizone(true);
+    dm_bg->setHorizone(true);
+//    dm_bg->setColor2(Qt::red, Qt::red);
+    dm_bg->showAni();
     connect(dm_bg, SIGNAL(signalRedraw()), this, SLOT(update()));
 }
 

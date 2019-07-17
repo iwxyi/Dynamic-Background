@@ -36,6 +36,8 @@ public:
     virtual void setColor2(QColor, QColor) {}
     virtual void draw(QPainter&) {}
 
+    void showAni();
+
 
 protected:
     virtual QRect getGeometry();
@@ -56,6 +58,8 @@ protected:
     QTimer* timer;
     int interval;
     QWidget* widget;
+
+    int show_ani_progress;
 };
 
 #endif // DYNAMICBACKGROUNDINTERFACE_H

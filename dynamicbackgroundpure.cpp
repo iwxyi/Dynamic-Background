@@ -22,7 +22,7 @@ void DynamicBackgroundPure::setColor(QColor color1, QColor color2)
         if (c[i] == c2[i]) a[i] = false;
     }
 
-    draw_color = QColor(c[R], c[G], c[B], c[A]);
+    draw_color = QColor(c[cR], c[cG], c[cB], c[cA]);
 }
 
 void DynamicBackgroundPure::draw(QPainter &painter)
@@ -44,7 +44,7 @@ void DynamicBackgroundPure::timeout()
     if (c[t] == c1[t]) a[t] = true;
     if (c[t] == c2[t]) a[t] = false;
 
-    draw_color = QColor(c[R], c[G], c[B], c[A]);
+    draw_color = QColor(c[cR], c[cG], c[cB], c[cA]);
 
     DynamicBackgroundInterface::timeout();
 }

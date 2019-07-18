@@ -91,10 +91,10 @@ int DynamicBackgroundInterface::intToUnity(int v)
 
 void DynamicBackgroundInterface::colorToArray(int *arr, QColor c)
 {
-    arr[R] = c.red();
-    arr[G] = c.green();
-    arr[B] = c.blue();
-    arr[A] = c.alpha();
+    arr[cR] = c.red();
+    arr[cG] = c.green();
+    arr[cB] = c.blue();
+    arr[cA] = c.alpha();
 }
 
 void DynamicBackgroundInterface::redraw()

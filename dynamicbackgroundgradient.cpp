@@ -33,8 +33,8 @@ void DynamicBackgroundGradient::setColor(QColor color1, QColor color2, QColor co
         if (cd[i] == c4[i]) ad[i] = false;
     }
 
-    draw_coloru = QColor(cu[R], cu[G], cu[B], cu[A]);
-    draw_colord = QColor(cd[R], cd[G], cd[B], cd[A]);
+    draw_coloru = QColor(cu[cR], cu[cG], cu[cB], cu[cA]);
+    draw_colord = QColor(cd[cR], cd[cG], cd[cB], cd[cA]);
 }
 
 void DynamicBackgroundGradient::setColor2(QColor color1, QColor color2)
@@ -53,7 +53,7 @@ void DynamicBackgroundGradient::setColor2(QColor color1, QColor color2)
         if (cm[i] == c6[i]) am[i] = false;
     }
 
-    draw_colorm = QColor(cm[R], cm[G], cm[B], cm[A]);
+    draw_colorm = QColor(cm[cR], cm[cG], cm[cB], cm[cA]);
 
     use_mid = true; // 三种颜色默认开启
     prop = 0.5;
@@ -138,7 +138,7 @@ void DynamicBackgroundGradient::timeout()
     	if (cu[t] == c1[t]) au[t] = true;
     	if (cu[t] == c2[t]) au[t] = false;
 
-    	draw_coloru = QColor(cu[R], cu[G], cu[B], cu[A]);
+        draw_coloru = QColor(cu[cR], cu[cG], cu[cB], cu[cA]);
     }
     else
     {
@@ -146,7 +146,7 @@ void DynamicBackgroundGradient::timeout()
     	if (cd[t] == c3[t]) ad[t] = true;
     	if (cd[t] == c4[t]) ad[t] = false;
 
-    	draw_colord = QColor(cd[R], cd[G], cd[B], cd[A]);
+        draw_colord = QColor(cd[cR], cd[cG], cd[cB], cd[cA]);
     }
 
     DynamicBackgroundInterface::timeout();

@@ -12,10 +12,10 @@
 #define PI 3.1415926
 
 #define REFRESH_INTERVAL 2000
-#define R 1
-#define G 2
-#define B 3
-#define A 4
+#define cR 1
+#define cG 2
+#define cB 3
+#define cA 4
 
 typedef int ColorArray[5];
 typedef bool ColorDirects[5];

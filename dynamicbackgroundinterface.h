@@ -26,6 +26,7 @@ class DynamicBackgroundInterface : public QObject
 public:
     DynamicBackgroundInterface(QWidget *parent);
 
+    void setWidget(QWidget* widget);
     virtual void setInterval(int iv = 1000);
     virtual void setHorizone(bool) {}
     virtual void setAngle(double a = 0);

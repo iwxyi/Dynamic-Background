@@ -13,6 +13,10 @@ DynamicBackgroundInterface::DynamicBackgroundInterface(QWidget *parent) : QObjec
     qsrand(time.msec()+time.second()*1000);
 }
 
+void DynamicBackgroundInterface::setWidget(QWidget *widget)
+{
+    this->widget = widget;
+}
 
 void DynamicBackgroundInterface::setInterval(int iv)
 {
@@ -54,6 +58,7 @@ void DynamicBackgroundInterface::timeout()
 
 QRect DynamicBackgroundInterface::getGeometry()
 {
+    if (!widget) return QRect();
     return QRect(-1, -1, widget->size().width()+1, widget->size().height()+1);
 }
 

@@ -113,7 +113,7 @@ void DynamicBackgroundGradient::draw(QPainter &painter)
 
 void DynamicBackgroundGradient::setHorizone(bool h)
 {
-    horizone = true;
+    horizone = h;
     redraw();
 }
 

@@ -59,7 +59,7 @@ void DynamicBackgroundInterface::timeout()
 QRect DynamicBackgroundInterface::getGeometry()
 {
     if (!widget) return QRect();
-    return QRect(-1, -1, widget->size().width()+1, widget->size().height()+1);
+    return QRect(-1, -1, widget->size().width()+2, widget->size().height()+2);
 }
 
 int DynamicBackgroundInterface::randRange(int min, int max)
